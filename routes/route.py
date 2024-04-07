@@ -12,6 +12,7 @@ router = APIRouter()
 students_collection = db.students
 
 
+
 #create student data
 @router.post("/students", status_code=201, response_model=CreateStudentResponse, response_description="A JSON response sending back the ID of the newly created student record.")
 async def create_student(student: Student, response: Response):
@@ -24,6 +25,8 @@ async def create_student(student: Student, response: Response):
     # Return the ID of the newly created student
     response.headers["Content-Type"] = "application/json"
     return {"id": str(result.inserted_id)}
+
+
 
 
 #list the student data
@@ -47,6 +50,8 @@ async def list_students(
 
     # Return the list of students
     return {"data": students}
+
+
 
 #get one student data
 @router.get("/students/{id}", response_model=Student,summary="Fetch Student")
